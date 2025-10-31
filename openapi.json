@@ -1,0 +1,13 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CodeCampus REST API",
+        "version": "1.0.0",
+        "description": "CodeCampus REST API"
+    },
+    "servers": [
+        {
+            "url": "https://codecampus-be.vercel.app/api"
+        }
+    ]
+}

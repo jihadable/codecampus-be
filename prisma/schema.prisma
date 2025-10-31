@@ -1,0 +1,145 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  username String @unique
+  fullname String
+  email String @unique
+  password String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  submissions Submission[]
+  problemSuggestions ProblemSuggestion[]
+  discussions Discussion[]
+  comments Comment[]
+
+  @@map("users")
+}
+
+enum Difficulty {
+  easy
+  medium
+  hard
+}
+
+model Problem {
+  id String @id @default(uuid())
+  title String
+  description String
+  difficulty Difficulty
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  defaultCodes DefaultCode[]
+  testCases TestCase[]
+
+  @@map("problems")
+}
+
+model TestCase {
+  id String @id @default(uuid())
+  problem_id String
+  input String
+  expected_output String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  problem Problem @relation(fields: [problem_id], references: [id], onDelete: Cascade)
+
+  @@map("test_cases")
+}
+
+model DefaultCode {
+  id String @id @default(uuid())
+  problem_id String
+  programming_language_id String
+  code String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  problem Problem @relation(fields: [problem_id], references: [id], onDelete: Cascade)
+  ProgrammingLanguage ProgrammingLanguage @relation(fields: [programming_language_id], references: [id], onDelete: Cascade)
+
+  @@map("default_codes")
+}
+
+model ProgrammingLanguage {
+  id String @id @default(uuid())
+  name String
+  version String
+
+  defaultCodes DefaultCode[]
+  submissions Submission[]
+
+  @@map("programming_languages")
+}
+
+model Submission {
+  id String @id @default(uuid())
+  user_id String
+  programming_language_id String
+  status Boolean
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  ProgrammingLanguage ProgrammingLanguage @relation(fields: [programming_language_id], references: [id], onDelete: Cascade)
+
+  @@map("submissions")
+}
+
+model ProblemSuggestion {
+  id String @id @default(uuid())
+  title String
+  description String
+  difficulty Difficulty
+  suggested_by String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  suggester User @relation(fields: [suggested_by], references: [id], onDelete: Cascade)
+
+  @@map("problem_suggestions")
+}
+
+model Discussion {
+  id String @id @default(uuid())
+  created_by String
+  title String
+  content String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  creator User @relation(fields: [created_by], references: [id], onDelete: Cascade)
+  comments Comment[]
+
+  @@map("discussions")
+}
+
+model Comment {
+  id String @id @default(uuid())
+  discussion_id String
+  created_by String
+  content String
+  created_at DateTime @default(now())
+
+  discussion Discussion @relation(fields: [discussion_id], references: [id], onDelete: Cascade)
+  creator User @relation(fields: [created_by], references: [id], onDelete: Cascade)
+
+  @@map("comments")
+}

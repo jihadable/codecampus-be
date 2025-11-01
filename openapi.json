@@ -395,17 +395,17 @@
                 }
             }
         },
-        "/problems/{id}": {
+        "/problems/{problem_id}": {
             "get": {
                 "tags": ["Problems"],
                 "summary": "Mendapatkan soal pemrograman berdasarkan id",
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "problem_id",
                         "schema": {
                             "type": "string",
-                            "example": ""
+                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                         },
                         "required": true
                     }
@@ -637,14 +637,14 @@
                 }
             }
         },
-        "/discussions/{id}":{
+        "/discussions/{discussion_id}":{
             "get": {
                 "tags": ["Discussions"],
                 "summary": "Mendapatkan diskusi berdasarkan id",
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "discussion_id",
                         "schema": {
                             "type": "string",
                             "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
@@ -731,6 +731,179 @@
                 "responses": {
                     "200": {
                         "description": "Diskusi berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comments": {
+            "post": {
+                "tags": ["Comments"],
+                "summary": "Mengirimkan komentar",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "discussion_id": {
+                                        "type": "string",
+                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Komentar berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "comment": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "content": {
+                                                            "type": "string"
+                                                        },
+                                                        "creator": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "username": {
+                                                                    "type": "string",
+                                                                    "example": "budi7"
+                                                                },
+                                                                "fullname": {
+                                                                    "type": "string",
+                                                                    "example": "Budi Setiawan"
+                                                                }
+                                                            }
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/discussions/{discussion_id}": {
+            "get": {
+                "tags": ["Comments"],
+                "summary": "Mendapatkan daftar komentar berdasarkan diskusi",
+                "responses": {
+                    "200": {
+                        "description": "Daftar komentar berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "comments": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "content": {
+                                                                "type": "string"
+                                                            },
+                                                            "creator": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                    },
+                                                                    "username": {
+                                                                        "type": "string",
+                                                                        "example": "budi7"
+                                                                    },
+                                                                    "fullname": {
+                                                                        "type": "string",
+                                                                        "example": "Budi Setiawan"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/{comment_id}": {
+            "delete": {
+                "tags": ["Comments"],
+                "summary": "Menghapus komentar berdasarkan id",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Komentar berhasil dihapus",
                         "content": {
                             "application/json": {
                                 "schema": {

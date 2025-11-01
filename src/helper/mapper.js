@@ -30,4 +30,17 @@ const discussionMapper = discussion => {
     }
 }
 
-module.exports = { userMapper, problemMapper, discussionMapper }
+const commentMapper = comment => {
+    return {
+        id: comment.id,
+        content: comment.content,
+        creator: {
+            id: comment.creator.id,
+            username: comment.creator.username,
+            fullname: comment.creator.fullname
+        },
+        created_at: comment.created_at
+    }
+}
+
+module.exports = { userMapper, problemMapper, discussionMapper, commentMapper }

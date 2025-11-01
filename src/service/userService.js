@@ -22,7 +22,7 @@ class UserService {
         })
 
         if (!user){
-            return new NotFoundError("User tidak ditemukan")
+            throw new NotFoundError("User tidak ditemukan")
         }
 
         return user

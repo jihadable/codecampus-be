@@ -1,11 +1,13 @@
 const { Router } = require("express")
 const errorHandlerMiddleware = require("../middleware/errorMiddleware")
 const userRouter = require("./userRoute")
+const problemRouter = require("./problemRoute")
 
 const apiRouter = db => {
     const router = Router()
 
     router.use("/users", userRouter(db))
+    router.use("/problems", problemRouter(db))
     // router.use("/submissions")
     // router.use("/discussions")
     // router.use("/comments")

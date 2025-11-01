@@ -13,36 +13,36 @@
     "tags": [
         {
             "name": "Users",
-            "description": "Users"
+            "description": "Pengguna"
         },
         {
             "name": "Problems",
-            "description": "Problems"
+            "description": "Soal pemrograman"
         },
         {
             "name": "Submissions",
-            "description": "Submissions"
+            "description": "Jawaban soal pemrograman"
         },
         {
             "name": "Discussions",
-            "description": "Discussions"
+            "description": "Diskusi"
         },
         {
             "name": "Comments",
-            "description": "Comments"
+            "description": "Komentar"
         }
     ],
     "paths": {
         "/users": {
             "get": {
                 "tags": ["Users"],
-                "summary": "Get user data",
+                "summary": "Mendapatkan data pengguna",
                 "security": [
                     { "bearerAuth": [] }
                 ],
                 "responses": {
                     "200": {
-                        "description": "User found",
+                        "description": "Data pengguna berhasil didapatkan",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -87,7 +87,7 @@
             },
             "put": {
                 "tags": ["Users"],
-                "summary": "Update user data",
+                "summary": "Memperbarui data pengguna",
                 "security": [
                     { "bearerAuth": [] }
                 ],
@@ -112,7 +112,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "User data updated",
+                        "description": "Data pengguna berhasil diperbarui",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -159,7 +159,7 @@
         "/users/register": {
             "post": {
                 "tags": ["Users"],
-                "summary": "Register new user",
+                "summary": "Mendaftarkan pengguna baru",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -189,7 +189,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "User registered",
+                        "description": "Pengguna baru berhasil didaftarkan",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -240,7 +240,7 @@
         "/users/login": {
             "post": {
                 "tags": ["Users"],
-                "summary": "User login",
+                "summary": "Memasukkan pengguna ke sistem",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -262,7 +262,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "User logged in",
+                        "description": "Pengguna berhasil masuk ke sistem",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -301,6 +301,444 @@
                                                     "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYTAzNmMzLWU5MDMtNDNjMC05ZTI2LWVhY2QzMWExYjYyMyIsImlhdCI6MTc2MTg4MDUyMywiZXhwIjoxNzY0NDcyNTIzfQ.4StJDhCVWQ5EdUWcztaAXz6jTD4bpzQ2DMpLLUjAluc"
                                                 }
                                             }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/problems": {
+            "get": {
+                "tags": ["Problems"],
+                "summary": "Mendapatkan daftar soal pemrograman",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer",
+                            "example": 20
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Daftar soal pemrograman",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "total_pages": {
+                                                    "type": "integer",
+                                                    "example": 20
+                                                },
+                                                "total_problems": {
+                                                    "type": "integer",
+                                                    "example": 389
+                                                },
+                                                "problems_per_page": {
+                                                    "type": "integer",
+                                                    "example": 20
+                                                },
+                                                "problems": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "title": {
+                                                                "type": "string"
+                                                            },
+                                                            "description": {
+                                                                "type": "string"
+                                                            },
+                                                            "difficulty": {
+                                                                "type": "string",
+                                                                "example": "medium"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/problems/{id}": {
+            "get": {
+                "tags": ["Problems"],
+                "summary": "Mendapatkan soal pemrograman berdasarkan id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string",
+                            "example": ""
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Soal pemrograman berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "problem": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "description": {
+                                                            "type": "string"
+                                                        },
+                                                        "difficulty": {
+                                                            "type": "string",
+                                                            "example": "medium"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/discussions": {
+            "post": {
+                "tags": ["Discussions"],
+                "summary": "Membuat diskusi baru",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Diskusi baru berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "discussion": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "content": {
+                                                            "type": "string"
+                                                        },
+                                                        "creator": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "username": {
+                                                                    "type": "string",
+                                                                    "example": "budi7"
+                                                                },
+                                                                "fullname": {
+                                                                    "type": "string",
+                                                                    "example": "Budi Setiawan"
+                                                                }
+                                                            }
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Discussions"],
+                "summary": "Mendapatkan daftar diskusi",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer",
+                            "example": 20
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Daftar diskusi berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "total_pages": {
+                                                    "type": "integer",
+                                                    "example": 20
+                                                },
+                                                "total_problems": {
+                                                    "type": "integer",
+                                                    "example": 389
+                                                },
+                                                "problems_per_page": {
+                                                    "type": "integer",
+                                                    "example": 20
+                                                },
+                                                "discussions": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "title": {
+                                                                "type": "string"
+                                                            },
+                                                            "content": {
+                                                                "type": "string"
+                                                            },
+                                                            "creator": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                    },
+                                                                    "username": {
+                                                                        "type": "string",
+                                                                        "example": "budi7"
+                                                                    },
+                                                                    "fullname": {
+                                                                        "type": "string",
+                                                                        "example": "Budi Setiawan"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/discussions/{id}":{
+            "get": {
+                "tags": ["Discussions"],
+                "summary": "Mendapatkan diskusi berdasarkan id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string",
+                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Diskusi berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "discussion": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                        },
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "content": {
+                                                            "type": "string"
+                                                        },
+                                                        "creator": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "username": {
+                                                                    "type": "string",
+                                                                    "example": "budi7"
+                                                                },
+                                                                "fullname": {
+                                                                    "type": "string",
+                                                                    "example": "Budi Setiawan"
+                                                                }
+                                                            }
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Discussions"],
+                "summary": "Menghapus diskusi berdasarkan id",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string",
+                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Diskusi berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
                                         }
                                     }
                                 }

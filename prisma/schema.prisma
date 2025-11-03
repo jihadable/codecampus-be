@@ -73,7 +73,7 @@ model DefaultCode {
   updated_at DateTime @updatedAt
 
   problem Problem @relation(fields: [problem_id], references: [id], onDelete: Cascade)
-  ProgrammingLanguage ProgrammingLanguage @relation(fields: [programming_language_id], references: [id], onDelete: Cascade)
+  programmingLanguage ProgrammingLanguage @relation(fields: [programming_language_id], references: [id], onDelete: Cascade)
 
   @@map("default_codes")
 }
@@ -82,6 +82,7 @@ model ProgrammingLanguage {
   id String @id @default(uuid())
   name String
   version String
+  wrapper_code_template String
 
   defaultCodes DefaultCode[]
   submissions Submission[]

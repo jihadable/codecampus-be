@@ -20,6 +20,14 @@
             "description": "Soal pemrograman"
         },
         {
+            "name": "Default codes",
+            "description": "Code template untuk soal pemrograman"
+        },
+        {
+            "name": "Programming language",
+            "description": "Bahasa pemrograman"
+        },
+        {
             "name": "Submissions",
             "description": "Jawaban soal pemrograman"
         },
@@ -441,6 +449,128 @@
                                                         "difficulty": {
                                                             "type": "string",
                                                             "example": "medium"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/default_codes/problems/{problem_id}": {
+            "get": {
+                "tags": ["Default codes"],
+                "summary": "Mendapatkan daftar code template berdasarkan soal pemrograman",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "problem_id",
+                        "schema": {
+                            "type": "string",
+                            "example": ""
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Daftar code template berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "default_codes": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": ""
+                                                            },
+                                                            "code": {
+                                                                "type": "string",
+                                                                "example": ""
+                                                            },
+                                                            "programming_language": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": ""
+                                                                    },
+                                                                    "name": {
+                                                                        "type": "string",
+                                                                        "example": "javascript"
+                                                                    },
+                                                                    "version": {
+                                                                        "type": "string",
+                                                                        "example": "18.15.0"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/programming_languages": {
+            "get": {
+                "tags": ["Programming language"],
+                "summary": "Mendapatkan daftar bahasa pemrograman",
+                "responses": {
+                    "200": {
+                        "description": "Daftar bahasa pemrograman berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "programming_languages": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": ""
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "javascript"
+                                                            },
+                                                            "version": {
+                                                                "type": "string",
+                                                                "example": "18.15.0"
+                                                            }
                                                         }
                                                     }
                                                 }

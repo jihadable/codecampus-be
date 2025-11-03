@@ -16,6 +16,26 @@ const problemMapper = problem => {
     }
 }
 
+const defaultCodeMapper = defaultCode => {
+    return {
+        id: defaultCode.id,
+        code: defaultCode.code,
+        programming_language: {
+            id: defaultCode.programmingLanguage.id,
+            name: defaultCode.programmingLanguage.name,
+            version: defaultCode.programmingLanguage.version
+        }
+    }
+}
+
+const programmingLanguageMapper = programmingLanguage => {
+    return {
+        id: programmingLanguage.id,
+        name: programmingLanguage.name,
+        version: programmingLanguage.version
+    }
+}
+
 const discussionMapper = discussion => {
     return {
         id: discussion.id,
@@ -43,4 +63,11 @@ const commentMapper = comment => {
     }
 }
 
-module.exports = { userMapper, problemMapper, discussionMapper, commentMapper }
+module.exports = {
+    userMapper,
+    problemMapper,
+    defaultCodeMapper,
+    programmingLanguageMapper,
+    discussionMapper,
+    commentMapper
+}

@@ -1,4 +1,4 @@
-const { NotBeforeError } = require("jsonwebtoken")
+const NotFoundError = require("../error/NotFoundError")
 
 class CommentService {
     constructor(db){
@@ -41,7 +41,7 @@ class CommentService {
         })
 
         if (!comment){
-            throw new NotBeforeError("Komentar tidak ditemukan")
+            throw new NotFoundError("Komentar tidak ditemukan")
         }
 
         return comment

@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.js",
+    "migrate": "npx prisma migrate dev",
+    "seeder": "node ./prisma/seed/seeder.js",
     "postinstall": "prisma generate"
   },
   "keywords": [],

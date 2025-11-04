@@ -28,11 +28,11 @@ class UserService {
         return user
     }
 
-    async updateUserById(id, { username, fullname }){
+    async updateUserById(id, { username, fullname, bio }){
         await this.getUserById(id)
         const user = await this._db.user.update({
             where: { id },
-            data: { username, fullname }
+            data: { username, fullname, bio }
         })
 
         return user

@@ -43,8 +43,8 @@ class UserHandler {
     async updateUserById(req, res, next){
         try {
             const { user_id } = res.locals
-            const { username, fullname } = req.body
-            const user = await this._service.updateUserById(user_id, { username, fullname })
+            const { username, fullname, bio } = req.body
+            const user = await this._service.updateUserById(user_id, { username, fullname, bio })
 
             res.status(200).json({
                 status: "success",

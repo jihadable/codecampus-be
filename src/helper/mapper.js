@@ -3,7 +3,8 @@ const userMapper = user => {
         id: user.id,
         username: user.username,
         fullname: user.fullname,
-        email: user.email
+        email: user.email,
+        bio: user.bio
     }
 }
 
@@ -33,6 +34,14 @@ const programmingLanguageMapper = programmingLanguage => {
         id: programmingLanguage.id,
         name: programmingLanguage.name,
         version: programmingLanguage.version
+    }
+}
+
+const submissionMapper = submission => {
+    return {
+        id: submission.id,
+        code: submission.code,
+        status: submission.status
     }
 }
 
@@ -68,6 +77,7 @@ module.exports = {
     problemMapper,
     defaultCodeMapper,
     programmingLanguageMapper,
+    submissionMapper,
     discussionMapper,
     commentMapper
 }

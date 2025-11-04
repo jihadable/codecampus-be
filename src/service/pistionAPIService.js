@@ -1,26 +1,20 @@
 const { default: axios } = require("axios")
 
 class PistonAPIService {
-    constructor(programmingLanguageService, testCaseService){
-        this._pistonAPI = process.env.PISTON_API
-
-        this.programmingLanguageService = programmingLanguageService
-        this.testCaseService = testCaseService
+    constructor(){
+        this._pistonAPIEndpoint = process.env.PISTON_API_ENDPOINT
     }
 
-    async executeCode(code, programming_language_id, test_case_id){
-        const programmingLanguage = await this.programmingLanguageService.getProgrammingLanguageById(programming_language_id)
-        const testCase = await this.testCaseService.getTestCaseById(test_case_id)
-        const { data } = await axios.post(`${this._pistonAPI}/execute`, {
-            language: programmingLanguage.name,
-            version: programmingLanguage.version,
+    async executeCode({ programming_language, programming_language_version, code }){
+        const { data } = await axios.post(`${this._pistonAPIEndpoint}/execute`, {
+            language: programming_language,
+            version: programming_language_version,
             files: {
-                content: `${code}\n${programmingLanguage.wrapper_code_template}`
-            },
-            args: [`${testCase.input}`]
+                content: code
+            }
         })
 
-        
+        return data   
     }
 }
 

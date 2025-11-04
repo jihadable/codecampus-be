@@ -20,6 +20,7 @@ model User {
   fullname String
   email String @unique
   password String
+  bio String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -42,6 +43,7 @@ model Problem {
   title String
   description String
   difficulty Difficulty
+  function_name String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -94,6 +96,7 @@ model Submission {
   id String @id @default(uuid())
   user_id String
   programming_language_id String
+  code String
   status Boolean
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

@@ -81,6 +81,10 @@
                                                         "email": {
                                                             "type": "string",
                                                             "example": "budisetiawan@gmail.com"
+                                                        },
+                                                        "bio": {
+                                                            "type": "string",
+                                                            "example": "Programmer"
                                                         }
                                                     }
                                                 }
@@ -112,6 +116,10 @@
                                     "fullname": {
                                         "type": "string",
                                         "example": "Budi Setiawan"
+                                    },
+                                    "bio": {
+                                        "type": "string",
+                                        "example": "Programmer"
                                     }
                                 }
                             }
@@ -151,6 +159,10 @@
                                                         "email": {
                                                             "type": "string",
                                                             "example": "budisetiawan@gmail.com"
+                                                        },
+                                                        "bio": {
+                                                            "type": "string",
+                                                            "example": "Programmer"
                                                         }
                                                     }
                                                 }
@@ -228,6 +240,10 @@
                                                         "email": {
                                                             "type": "string",
                                                             "example": "budisetiawan@gmail.com"
+                                                        },
+                                                        "bio": {
+                                                            "type": "string",
+                                                            "example": ""
                                                         }
                                                     }
                                                 },
@@ -301,6 +317,10 @@
                                                         "email": {
                                                             "type": "string",
                                                             "example": "budisetiawan@gmail.com"
+                                                        },
+                                                        "bio": {
+                                                            "type": "string",
+                                                            "example": "Programmer"
                                                         }
                                                     }
                                                 },
@@ -571,6 +591,73 @@
                                                                 "type": "string",
                                                                 "example": "18.15.0"
                                                             }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/submissions": {
+            "post": {
+                "tags": ["Submissions"],
+                "summary": "Membuat jawaban soal pemrograman",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "problem_id": {
+                                        "type": "string"
+                                    },
+                                    "programming_language_id": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Jawaban soal pemrograman berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "submission": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "code": {
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "type": "boolean",
+                                                            "example": true
                                                         }
                                                     }
                                                 }

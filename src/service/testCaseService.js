@@ -17,9 +17,9 @@ class TestCaseService {
         return testCase
     }
 
-    async getTestCasesByProblemAndProgrammingLanguage(problem_id, programming_language_id){
+    async getTestCasesByProblem(problem_id){
         const testCases = await this._db.testCase.findMany({
-            where: { problem_id, programming_language_id }
+            where: { problem_id }
         })
 
         return testCases

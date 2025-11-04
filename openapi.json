@@ -38,6 +38,10 @@
         {
             "name": "Comments",
             "description": "Komentar"
+        },
+        {
+            "name": "Leaderboard",
+            "description": "Leaderboard"
         }
     ],
     "paths": {
@@ -72,7 +76,7 @@
                                                         },
                                                         "username": {
                                                             "type": "string",
-                                                            "example": "budi7"
+                                                            "example": "budisetiawan"
                                                         },
                                                         "fullname": {
                                                             "type": "string",
@@ -150,7 +154,7 @@
                                                         },
                                                         "username": {
                                                             "type": "string",
-                                                            "example": "budi7"
+                                                            "example": "budisetiawan"
                                                         },
                                                         "fullname": {
                                                             "type": "string",
@@ -188,7 +192,7 @@
                                 "properties": {
                                     "username": {
                                         "type": "string",
-                                        "example": "budi7"
+                                        "example": "budisetiawan"
                                     },
                                     "fullname": {
                                         "type": "string",
@@ -231,7 +235,7 @@
                                                         },
                                                         "username": {
                                                             "type": "string",
-                                                            "example": "budi7"
+                                                            "example": "budisetiawan"
                                                         },
                                                         "fullname": {
                                                             "type": "string",
@@ -308,7 +312,7 @@
                                                         },
                                                         "username": {
                                                             "type": "string",
-                                                            "example": "budi7"
+                                                            "example": "budisetiawan"
                                                         },
                                                         "fullname": {
                                                             "type": "string",
@@ -401,14 +405,16 @@
                                                                 "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                                                             },
                                                             "title": {
-                                                                "type": "string"
+                                                                "type": "string",
+                                                                "example": "Faktorial"
                                                             },
                                                             "description": {
-                                                                "type": "string"
+                                                                "type": "string",
+                                                                "example": "Buatlah function yang bisa menghasilkan nilai faktorial dari sebuah bilangan"
                                                             },
                                                             "difficulty": {
                                                                 "type": "string",
-                                                                "example": "medium"
+                                                                "example": "easy"
                                                             }
                                                         }
                                                     }
@@ -461,14 +467,16 @@
                                                             "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                                                         },
                                                         "title": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "example": "Faktorial"
                                                         },
                                                         "description": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "example": "Buatlah function yang bisa menghasilkan nilai faktorial dari sebuah bilangan"
                                                         },
                                                         "difficulty": {
                                                             "type": "string",
-                                                            "example": "medium"
+                                                            "example": "easy"
                                                         }
                                                     }
                                                 }
@@ -492,7 +500,7 @@
                         "name": "problem_id",
                         "schema": {
                             "type": "string",
-                            "example": ""
+                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                         },
                         "required": true
                     }
@@ -519,18 +527,18 @@
                                                         "properties": {
                                                             "id": {
                                                                 "type": "string",
-                                                                "example": ""
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                                                             },
                                                             "code": {
                                                                 "type": "string",
-                                                                "example": ""
+                                                                "example": "function factorial(n){\n\n}"
                                                             },
                                                             "programming_language": {
                                                                 "type": "object",
                                                                 "properties": {
                                                                     "id": {
                                                                         "type": "string",
-                                                                        "example": ""
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                                                                     },
                                                                     "name": {
                                                                         "type": "string",
@@ -581,7 +589,7 @@
                                                         "properties": {
                                                             "id": {
                                                                 "type": "string",
-                                                                "example": ""
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                                                             },
                                                             "name": {
                                                                 "type": "string",
@@ -618,13 +626,16 @@
                                 "type": "object",
                                 "properties": {
                                     "code": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "function factorial(n){\n    let result = 1\n    for (let i = 1; i >= n; i++){\n    result *= i\n    }\n    return result\n}"
                                     },
                                     "problem_id": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                                     },
                                     "programming_language_id": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                                     }
                                 }
                             }
@@ -650,14 +661,68 @@
                                                     "type": "object",
                                                     "properties": {
                                                         "id": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
                                                         },
                                                         "code": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "example": "function factorial(n){\n    let result = 1\n    for (let i = 1; i >= n; i++){\n    result *= i\n    }\n    return result\n}"
                                                         },
                                                         "status": {
                                                             "type": "boolean",
                                                             "example": true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/submissions/users": {
+            "get": {
+                "tags": ["Submissions"],
+                "summary": "Mendapatkan daftar jawaban soal pemrograman berdasarkan pengguna",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Daftar jawaban soal pemrograman berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "submissions": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "code": {
+                                                                "type": "string",
+                                                                "example": "function factorial(n){\n    let result = 1\n    for (let i = 1; i >= n; i++){\n    result *= i\n    }\n    return result\n}"
+                                                            },
+                                                            "status": {
+                                                                "type": "boolean",
+                                                                "example": true
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -732,7 +797,7 @@
                                                                 },
                                                                 "username": {
                                                                     "type": "string",
-                                                                    "example": "budi7"
+                                                                    "example": "budisetiawan"
                                                                 },
                                                                 "fullname": {
                                                                     "type": "string",
@@ -830,7 +895,7 @@
                                                                     },
                                                                     "username": {
                                                                         "type": "string",
-                                                                        "example": "budi7"
+                                                                        "example": "budisetiawan"
                                                                     },
                                                                     "fullname": {
                                                                         "type": "string",
@@ -906,7 +971,7 @@
                                                                 },
                                                                 "username": {
                                                                     "type": "string",
-                                                                    "example": "budi7"
+                                                                    "example": "budisetiawan"
                                                                 },
                                                                 "fullname": {
                                                                     "type": "string",
@@ -1024,7 +1089,7 @@
                                                                 },
                                                                 "username": {
                                                                     "type": "string",
-                                                                    "example": "budi7"
+                                                                    "example": "budisetiawan"
                                                                 },
                                                                 "fullname": {
                                                                     "type": "string",
@@ -1087,7 +1152,7 @@
                                                                     },
                                                                     "username": {
                                                                         "type": "string",
-                                                                        "example": "budi7"
+                                                                        "example": "budisetiawan"
                                                                     },
                                                                     "fullname": {
                                                                         "type": "string",
@@ -1129,6 +1194,89 @@
                                         "status": {
                                             "type": "string",
                                             "example": "success"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/leaderboard": {
+            "get": {
+                "tags": ["Leaderboard"],
+                "summary": "Mendapatkan daftar leaderboard",
+                "responses": {
+                    "200": {
+                        "description": "Daftar leaderboard berhasil didapatkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "leaderboard": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string",
+                                                                "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                            },
+                                                            "username": {
+                                                                "type": "string",
+                                                                "example": "budisetiawan"
+                                                            },
+                                                            "fullname": {
+                                                                "type": "string",
+                                                                "example": "Budi Setiawan"
+                                                            },
+                                                            "accepted_submissions": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "easy": {
+                                                                        "type": "integer",
+                                                                        "example": 3
+                                                                    },
+                                                                    "medium": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    },
+                                                                    "hard": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    }
+                                                                }
+                                                            },
+                                                            "accepted_problem_suggestions": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "easy": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    },
+                                                                    "medium": {
+                                                                        "type": "integer",
+                                                                        "example": 0
+                                                                    },
+                                                                    "hard": {
+                                                                        "type": "integer",
+                                                                        "example": 0
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }

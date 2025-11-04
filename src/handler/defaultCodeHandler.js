@@ -3,6 +3,8 @@ const { defaultCodeMapper } = require("../helper/mapper")
 class DefaultCodeHandler {
     constructor(service){
         this._service = service
+
+        this.getDefaultCodesByProblem = this.getDefaultCodesByProblem.bind(this)
     }
 
     async getDefaultCodesByProblem(req, res, next){

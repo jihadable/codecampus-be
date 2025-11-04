@@ -45,6 +45,20 @@ const submissionMapper = submission => {
     }
 }
 
+const problemSuggestionMapper = problemSuggestion => {
+    return {
+        id: problemSuggestion.id,
+        title: problemSuggestion.title,
+        description: problemSuggestion.description,
+        difficulty: problemSuggestion.difficulty,
+        suggester: {
+            id: discussion.creator.id,
+            username: discussion.creator.username,
+            fullname: discussion.creator.fullname
+        }
+    }
+}
+
 const discussionMapper = discussion => {
     return {
         id: discussion.id,
@@ -78,6 +92,7 @@ module.exports = {
     defaultCodeMapper,
     programmingLanguageMapper,
     submissionMapper,
+    problemSuggestionMapper,
     discussionMapper,
     commentMapper
 }

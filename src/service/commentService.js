@@ -37,7 +37,8 @@ class CommentService {
 
     async getCommentById(id){
         const comment = await this._db.comment.findUnique({
-            where: { id }
+            where: { id },
+            include: { creator: true }
         })
 
         if (!comment){

@@ -3,6 +3,8 @@ const { programmingLanguageMapper } = require("../helper/mapper")
 class ProgrammingLanguageHandler {
     constructor(service){
         this._service = service
+
+        this.getProgrammingLanguages = this.getProgrammingLanguages.bind(this)
     }
 
     async getProgrammingLanguages(req, res, next){

@@ -16,6 +16,21 @@ class UserService {
         return user
     }
 
+    async getUsers(){
+        const users = await this._db.user.findMany({
+            include: {
+                submissions: {
+                    include: {
+                        problem: true
+                    } 
+                },
+                problemSuggestions: true
+            }
+        })
+
+        return users
+    }
+
     async getUserById(id){
         const user = await this._db.user.findUnique({
             where: { id }

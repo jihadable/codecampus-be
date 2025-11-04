@@ -23,6 +23,7 @@ const submissionRouter = db => {
     )
 
     router.post("/", authMiddleware, handler.postSubmission)
+    router.get("/users", authMiddleware, handler.getSubmissionsByUser)
 
     return router
 }

@@ -16,6 +16,7 @@ class SubmissionHandler {
         this._testCaseService = testCaseService
 
         this.postSubmission = this.postSubmission.bind(this)
+        this.getSubmissionsByUser = this.getSubmissionsByUser.bind(this)
     }
 
     async postSubmission(req, res, next){
@@ -50,6 +51,20 @@ class SubmissionHandler {
             res.status(201).json({
                 status: "success",
                 data: { submission: submissionMapper(submission) }
+            })
+        } catch(error){
+            next(error)
+        }
+    }
+
+    async getSubmissionsByUser(req, res, next){
+        try {
+            const { user_id } = res.locals
+            let submissions = await this._service.getSubmissionsByUser(user_id)
+
+            res.status(200).json({
+                status: "success",
+                data: { submissions: submissions.map(submission => submissionMapper(submission)) }
             })
         } catch(error){
             next(error)

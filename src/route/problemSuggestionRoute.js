@@ -1,0 +1,15 @@
+const { Router } = require("express")
+const ProblemSuggestionService = require("../service/problemSuggestionService")
+const ProblemSuggestionHandler = require("../handler/problemSuggestionHandler")
+
+const problemSuggestionRouter = db => {
+    const router = Router()
+    const service = new ProblemSuggestionService(db)
+    const handler = new ProblemSuggestionHandler(service)
+
+    router.get("/users", handler.getProblemSuggestionsByUser)
+
+    return router
+}
+
+module.exports = problemSuggestionRouter

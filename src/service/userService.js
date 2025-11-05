@@ -54,7 +54,7 @@ class UserService {
     }
 
     async verifyUser(email, password){
-        const user = await this.db.user.findUnique({
+        const user = await this._db.user.findUnique({
             where: { email }
         })
 

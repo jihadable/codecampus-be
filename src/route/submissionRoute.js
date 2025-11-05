@@ -11,7 +11,7 @@ const submissionRouter = db => {
     const router = Router()
     const service = new SubmissionService(db)
     const pistonAPIService = new PistonAPIService()
-    const problemService = new ProblemService(dn)
+    const problemService = new ProblemService(db)
     const programmingLanguageService = new ProgrammingLanguageService(db)
     const testCaseService = new TestCaseService(db)
     const handler = new SubmissionHandler(

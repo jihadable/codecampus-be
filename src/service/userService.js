@@ -1,4 +1,4 @@
-const { hash } = require("bcrypt")
+const { hash, compareSync } = require("bcrypt")
 const NotFoundError = require("../error/NotFoundError")
 const BadRequestError = require("../error/BadRequestError")
 

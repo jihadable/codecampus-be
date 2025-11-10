@@ -22,7 +22,7 @@ class DiscussionService {
         const discussions = await this._db.discussion.findMany({
             skip,
             take: limit,
-            orderBy: { createdAt: "desc" },
+            orderBy: { created_at: "desc" },
             include: { creator: true }
         })
 

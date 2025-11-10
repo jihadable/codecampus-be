@@ -13,7 +13,7 @@ class ProblemService {
         const problems = await this._db.problem.findMany({
             skip,
             take: limit,
-            orderBy: { createdAt: "desc" }
+            orderBy: { created_at: "desc" }
         })
 
         const totalPages = Math.ceil(total / limit)

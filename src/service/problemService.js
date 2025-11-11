@@ -6,7 +6,7 @@ class ProblemService {
         this._db = db
     }
 
-    async getProblems(page = 1, limit = 20){
+    async getProblems(page, limit){
         const skip = (page - 1) * limit
         const total = await this._db.problem.count()
 

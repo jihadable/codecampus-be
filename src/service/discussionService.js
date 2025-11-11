@@ -15,7 +15,7 @@ class DiscussionService {
         return discussion
     }
 
-    async getDiscussions(page, limit){
+    async getDiscussions(page = 1, limit = 20){
         const skip = (page - 1) * limit
         const total = await this._db.discussion.count()
 

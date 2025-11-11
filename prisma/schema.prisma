@@ -33,9 +33,9 @@ model User {
 }
 
 enum Difficulty {
-  easy
-  medium
-  hard
+  Mudah
+  Sedang
+  Sulit
 }
 
 model Problem {

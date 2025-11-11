@@ -12,20 +12,20 @@ class LeaderboardHandler {
 
             users.forEach(user => {
                 const pointsPerSubmission = {
-                    easy: 1,
-                    medium: 2,
-                    hard: 3
+                    Mudah: 1,
+                    Sedang: 2,
+                    Sulit: 3
                 }
                 const pointsPerProblemSuggestion = {
-                    easy: 4,
-                    medium: 5,
-                    hard: 6
+                    Mudah: 4,
+                    Sedang: 5,
+                    Sulit: 6
                 }
 
                 const acceptedSubmissions = {
-                    easy: 0,
-                    medium: 0,
-                    hard: 0
+                    Mudah: 0,
+                    Sedang: 0,
+                    Sulit: 0
                 }
                 user.submissions.forEach(submission => {
                     if (submission.status){
@@ -34,9 +34,9 @@ class LeaderboardHandler {
                 })
 
                 const acceptedProblemSuggestions = {
-                    easy: 0,
-                    medium: 0,
-                    hard: 0
+                    Mudah: 0,
+                    Sedang: 0,
+                    Sulit: 0
                 }
                 user.problemSuggestions.forEach(problemSuggestion => {
                     if (problemSuggestion.status){

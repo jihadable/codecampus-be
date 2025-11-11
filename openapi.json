@@ -414,7 +414,7 @@
                                                             },
                                                             "difficulty": {
                                                                 "type": "string",
-                                                                "example": "easy"
+                                                                "example": "Mudah"
                                                             }
                                                         }
                                                     }
@@ -476,7 +476,7 @@
                                                         },
                                                         "difficulty": {
                                                             "type": "string",
-                                                            "example": "easy"
+                                                            "example": "Mudah"
                                                         }
                                                     }
                                                 }
@@ -1242,15 +1242,15 @@
                                                             "accepted_submissions": {
                                                                 "type": "object",
                                                                 "properties": {
-                                                                    "easy": {
+                                                                    "Mudah": {
                                                                         "type": "integer",
                                                                         "example": 3
                                                                     },
-                                                                    "medium": {
+                                                                    "Sedang": {
                                                                         "type": "integer",
                                                                         "example": 1
                                                                     },
-                                                                    "hard": {
+                                                                    "Sulit": {
                                                                         "type": "integer",
                                                                         "example": 1
                                                                     }
@@ -1259,15 +1259,15 @@
                                                             "accepted_problem_suggestions": {
                                                                 "type": "object",
                                                                 "properties": {
-                                                                    "easy": {
+                                                                    "Mudah": {
                                                                         "type": "integer",
                                                                         "example": 1
                                                                     },
-                                                                    "medium": {
+                                                                    "Sedang": {
                                                                         "type": "integer",
                                                                         "example": 0
                                                                     },
-                                                                    "hard": {
+                                                                    "Sulit": {
                                                                         "type": "integer",
                                                                         "example": 0
                                                                     }

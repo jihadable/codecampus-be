@@ -8,16 +8,28 @@ class ProblemHandler {
         this.getProblemById = this.getProblemById.bind(this)
     }
 
+    // async getProblems(req, res, next){
+    //     try {
+    //         const page = parseInt(req.query.page) || 1
+    //         const limit = parseInt(req.query.limit) || 20
+
+    //         const problems = await this._service.getProblems(page, limit)
+
+    //         res.status(200).json({
+    //             status: "success",
+    //             data: problems
+    //         })
+    //     } catch(error){
+    //         next(error)
+    //     }
+    // }
     async getProblems(req, res, next){
         try {
-            const page = parseInt(req.query.page) || 1
-            const limit = parseInt(req.query.limit) || 20
-
-            const problems = await this._service.getProblems(page, limit)
+            const problems = await this._service.getProblems()
 
             res.status(200).json({
                 status: "success",
-                data: problems
+                data: { problems: problems.map(problem => problemMapper(problem)) }
             })
         } catch(error){
             next(error)
@@ -31,7 +43,7 @@ class ProblemHandler {
 
             res.status(200).json({
                 status: "success",
-                data: { problem: problemMapper(problem) }
+                data: { problem }
             })
         } catch(error){
             next(error)

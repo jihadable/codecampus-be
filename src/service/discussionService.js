@@ -15,26 +15,31 @@ class DiscussionService {
         return discussion
     }
 
-    async getDiscussions(page, limit){
-        const skip = (page - 1) * limit
-        const total = await this._db.discussion.count()
+    // async getDiscussions(page, limit){
+    //     const skip = (page - 1) * limit
+    //     const total = await this._db.discussion.count()
 
-        const discussions = await this._db.discussion.findMany({
-            skip,
-            take: limit,
-            orderBy: { created_at: "desc" },
-            include: { creator: true }
-        })
+    //     const discussions = await this._db.discussion.findMany({
+    //         skip,
+    //         take: limit,
+    //         orderBy: { created_at: "desc" },
+    //         include: { creator: true }
+    //     })
 
-        const totalPages = Math.ceil(total / limit)
+    //     const totalPages = Math.ceil(total / limit)
 
-        return {
-            current_page: page,
-            total_pages: totalPages,
-            total_discussions: total,
-            discussions_per_page: limit,
-            discussions: discussions.map(discussion => discussionMapper(discussion))
-        }
+    //     return {
+    //         current_page: page,
+    //         total_pages: totalPages,
+    //         total_discussions: total,
+    //         discussions_per_page: limit,
+    //         discussions: discussions.map(discussion => discussionMapper(discussion))
+    //     }
+    // }
+    async getDiscussions(){
+        const discussions = await this._db.discussion.findMany()
+
+        return discussions
     }
     
     async getDiscussionById(id){

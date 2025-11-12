@@ -25,16 +25,28 @@ class DiscussionHandler {
         }
     }
 
+    // async getDiscussions(req, res, next){
+    //     try {
+    //         const page = parseInt(req.query.page) || 1
+    //         const limit = parseInt(req.query.limit) || 20
+
+    //         const discussions = await this._service.getDiscussions(page, limit)
+
+    //         res.status(200).json({
+    //             status: "success",
+    //             data: discussions
+    //         })
+    //     } catch(error){
+    //         next(error)
+    //     }
+    // }
     async getDiscussions(req, res, next){
         try {
-            const page = parseInt(req.query.page) || 1
-            const limit = parseInt(req.query.limit) || 20
-
-            const discussions = await this._service.getDiscussions(page, limit)
+            const discussions = await this._service.getDiscussions()
 
             res.status(200).json({
                 status: "success",
-                data: discussions
+                data: { discussions: discussions.map(discussion => discussionMapper(discussion)) }
             })
         } catch(error){
             next(error)

@@ -6,30 +6,42 @@ class ProblemService {
         this._db = db
     }
 
-    async getProblems(page, limit){
-        const skip = (page - 1) * limit
-        const total = await this._db.problem.count()
+    // async getProblems(page, limit){
+    //     const skip = (page - 1) * limit
+    //     const total = await this._db.problem.count()
 
-        const problems = await this._db.problem.findMany({
-            skip,
-            take: limit,
-            orderBy: { created_at: "desc" }
-        })
+    //     const problems = await this._db.problem.findMany({
+    //         skip,
+    //         take: limit,
+    //         orderBy: { created_at: "desc" }
+    //     })
 
-        const totalPages = Math.ceil(total / limit)
+    //     const totalPages = Math.ceil(total / limit)
 
-        return {
-            current_page: page,
-            total_pages: totalPages,
-            total_problems: total,
-            problems_per_page: limit,
-            problems: problems.map(problem => problemMapper(problem))
-        }
+    //     return {
+    //         current_page: page,
+    //         total_pages: totalPages,
+    //         total_problems: total,
+    //         problems_per_page: limit,
+    //         problems: problems.map(problem => problemMapper(problem))
+    //     }
+    // }
+    async getProblems(){
+        const problems = await this._db.problem.findMany()
+
+        return problems
     }
 
     async getProblemById(id){
         const problem = await this._db.problem.findUnique({
-            where: { id }
+            where: { id },
+            include: {
+                defaultCodes: {
+                    include: {
+                        programmingLanguage: true
+                    }
+                }
+            }
         })
 
         if (!problem){

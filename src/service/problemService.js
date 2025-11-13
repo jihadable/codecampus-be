@@ -27,7 +27,15 @@ class ProblemService {
     //     }
     // }
     async getProblems(){
-        const problems = await this._db.problem.findMany()
+        const problems = await this._db.problem.findMany({
+            include: {
+                defaultCodes: {
+                    include: {
+                        programmingLanguage: true
+                    }
+                }
+            }
+        })
 
         return problems
     }

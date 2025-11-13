@@ -5,6 +5,8 @@ const authMiddleware = (req, res, next) => {
     try {
         const authorization = req.header("Authorization")
 
+        console.log(authorization)
+        
         if (!authorization){
             throw new UnauthorizeError("Token tidak ditemukan")
         }
@@ -14,6 +16,7 @@ const authMiddleware = (req, res, next) => {
         if (!token){
             throw new UnauthorizeError("Token tidak ditemukan")
         }
+
         
         const payload = verify(token, process.env.JWT_SECRET)
 

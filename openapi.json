@@ -346,24 +346,6 @@
             "get": {
                 "tags": ["Problems"],
                 "summary": "Mendapatkan daftar soal pemrograman",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "page",
-                        "schema": {
-                            "type": "integer",
-                            "example": 1
-                        }
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "schema": {
-                            "type": "integer",
-                            "example": 20
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Daftar soal pemrograman",
@@ -379,22 +361,6 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "current_page": {
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "total_pages": {
-                                                    "type": "integer",
-                                                    "example": 20
-                                                },
-                                                "total_problems": {
-                                                    "type": "integer",
-                                                    "example": 389
-                                                },
-                                                "problems_per_page": {
-                                                    "type": "integer",
-                                                    "example": 20
-                                                },
                                                 "problems": {
                                                     "type": "array",
                                                     "items": {
@@ -822,24 +788,6 @@
             "get": {
                 "tags": ["Discussions"],
                 "summary": "Mendapatkan daftar diskusi",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "page",
-                        "schema": {
-                            "type": "integer",
-                            "example": 1
-                        }
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "schema": {
-                            "type": "integer",
-                            "example": 20
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Daftar diskusi berhasil didapatkan",
@@ -855,22 +803,6 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "current_page": {
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "total_pages": {
-                                                    "type": "integer",
-                                                    "example": 20
-                                                },
-                                                "total_problems": {
-                                                    "type": "integer",
-                                                    "example": 389
-                                                },
-                                                "problems_per_page": {
-                                                    "type": "integer",
-                                                    "example": 20
-                                                },
                                                 "discussions": {
                                                     "type": "array",
                                                     "items": {

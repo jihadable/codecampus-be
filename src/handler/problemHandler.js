@@ -43,7 +43,7 @@ class ProblemHandler {
 
             res.status(200).json({
                 status: "success",
-                data: { problem }
+                data: { problem: problemMapper(problem) }
             })
         } catch(error){
             next(error)

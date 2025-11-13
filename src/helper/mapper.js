@@ -41,7 +41,18 @@ const submissionMapper = submission => {
     return {
         id: submission.id,
         code: submission.code,
-        status: submission.status
+        status: submission.status,
+        problem: {
+            id: submission.problem.id,
+            title: submission.problem.title,
+            description: submission.description,
+            difficulty: submission.difficulty
+        },
+        programming_language: {
+            id: submission.programmingLanguage.id,
+            name: submission.programmingLanguage.name,
+            version: submission.programmingLanguage.version
+        }
     }
 }
 

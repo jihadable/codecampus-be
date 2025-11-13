@@ -11,6 +11,10 @@ class SubmissionService {
             update: { code },
             create: {
                 user_id, problem_id, programming_language_id, code, status
+            },
+            include: {
+                problem: true,
+                programmingLanguage: true
             }
         })
 
@@ -19,7 +23,11 @@ class SubmissionService {
 
     async getSubmissionsByUser(user_id){
         const submissions = await this._db.submission.findMany({
-            where: { user_id }
+            where: { user_id },
+            include: {
+                problem: true,
+                programmingLanguage: true
+            }
         })
 
         return submissions

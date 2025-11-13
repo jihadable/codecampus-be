@@ -17,7 +17,7 @@ class UserHandler {
             const user = await this._service.addUser({ username, fullname, email, password })
             const jwt = generateJWT(user.id)
 
-            res.status(200).json({
+            res.status(201).json({
                 status: "success",
                 data: { user: userMapper(user), jwt }
             })

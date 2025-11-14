@@ -4,8 +4,6 @@ const UnauthorizeError = require("../error/UnauthorizeError")
 const authMiddleware = (req, res, next) => {
     try {
         const authorization = req.header("Authorization")
-
-        console.log(authorization)
         
         if (!authorization){
             throw new UnauthorizeError("Token tidak ditemukan")

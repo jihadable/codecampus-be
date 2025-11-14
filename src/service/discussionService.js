@@ -37,7 +37,11 @@ class DiscussionService {
     //     }
     // }
     async getDiscussions(){
-        const discussions = await this._db.discussion.findMany()
+        const discussions = await this._db.discussion.findMany({
+            include: {
+                creator: true
+            }
+        })
 
         return discussions
     }

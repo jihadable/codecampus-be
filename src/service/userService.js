@@ -10,7 +10,11 @@ class UserService {
     async addUser({ username, fullname, email, password }){
         const hashedPassword = await hash(password, 10)
         const user = await this._db.user.create({
-            data: { username, fullname, email, password: hashedPassword }
+            data: { username, fullname, email, password: hashedPassword },
+            include: {
+                submissions: true,
+                problemSuggestions: true
+            }
         })
 
         return user
@@ -33,7 +37,15 @@ class UserService {
 
     async getUserById(id){
         const user = await this._db.user.findUnique({
-            where: { id }
+            where: { id },
+            include: {
+                submissions: {
+                    include: {
+                        problem: true
+                    } 
+                },
+                problemSuggestions: true
+            }
         })
 
         if (!user){
@@ -43,11 +55,15 @@ class UserService {
         return user
     }
 
-    async updateUserById(id, { username, fullname, bio }){
+    async updateUserById(id, { username, fullname, bio, github, linkedin }){
         await this.getUserById(id)
         const user = await this._db.user.update({
             where: { id },
-            data: { username, fullname, bio }
+            data: { username, fullname, bio, github, linkedin },
+            include: {
+                submissions: true,
+                problemSuggestions: true
+            }
         })
 
         return user
@@ -55,7 +71,11 @@ class UserService {
 
     async verifyUser(email, password){
         const user = await this._db.user.findUnique({
-            where: { email }
+            where: { email },
+            include: {
+                submissions: true,
+                problemSuggestions: true
+            }
         })
 
         if (!user){

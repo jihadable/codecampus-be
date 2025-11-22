@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "users" ADD COLUMN     "github" TEXT,
+ADD COLUMN     "linkedin" TEXT,
+ALTER COLUMN "bio" DROP NOT NULL,
+ALTER COLUMN "bio" DROP DEFAULT;

@@ -46,7 +46,12 @@ class DiscussionHandler {
 
             res.status(200).json({
                 status: "success",
-                data: { discussions: discussions.map(discussion => discussionMapper(discussion)) }
+                data: {
+                    discussions: discussions.map(discussion => ({
+                        ...discussionMapper(discussion),
+                        total_comments: discussion._count.comments
+                    })) 
+                }
             })
         } catch(error){
             next(error)
@@ -55,8 +60,8 @@ class DiscussionHandler {
 
     async getDiscussionById(req, res, next){
         try {
-            const { id } = req.params
-            const discussion = await this._service.getDiscussionById(id)
+            const { discussion_id } = req.params
+            const discussion = await this._service.getDiscussionById(discussion_id)
 
             res.status(200).json({
                 status: "success",
@@ -69,8 +74,8 @@ class DiscussionHandler {
 
     async deleteDiscussionById(req, res, next){
         try {
-            const { id } = req.params
-            await this._service.deleteDiscussionById(id)
+            const { discussion_id } = req.params
+            await this._service.deleteDiscussionById(discussion_id)
 
             res.status(200).json({
                 status: "success"

@@ -21,7 +21,10 @@ class CommentService {
     async getCommentsByDiscussion(discussion_id){
         const comments = await this._db.comment.findMany({
             where: { discussion_id },
-            include: { creator: true }
+            include: { creator: true },
+            orderBy: {
+                created_at: "desc"
+            }
         })
 
         return comments

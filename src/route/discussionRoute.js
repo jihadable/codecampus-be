@@ -11,7 +11,7 @@ const discussionRouter = db => {
     router.post("/", authMiddleware, handler.postDiscussion)
     router.get("/", handler.getDiscussions)
     router.get("/:discussion_id", handler.getDiscussionById)
-    router.delete("/:discussin_id", authMiddleware, handler.deleteDiscussionById)
+    router.delete("/:discussion_id", authMiddleware, handler.deleteDiscussionById)
 
     return router
 }

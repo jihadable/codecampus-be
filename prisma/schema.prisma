@@ -20,7 +20,9 @@ model User {
   fullname String
   email String @unique
   password String
-  bio String @default("")
+  bio String?
+  github String?
+  linkedin String?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -85,6 +87,7 @@ model ProgrammingLanguage {
   id String @id @default(uuid())
   name String
   version String
+  file_name String
   wrapper_code_template String
 
   defaultCodes DefaultCode[]
@@ -93,13 +96,19 @@ model ProgrammingLanguage {
   @@map("programming_languages")
 }
 
+enum SubmissionStatus {
+  Accepted
+  Wrong_Answer
+  Runtime_Error
+}
+
 model Submission {
   id String @id @default(uuid())
   user_id String
   problem_id String
   programming_language_id String
   code String
-  status Boolean
+  status SubmissionStatus
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -116,7 +125,7 @@ model ProblemSuggestion {
   description String
   difficulty Difficulty
   suggested_by String
-  status Boolean
+  status Boolean @default(false)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 

@@ -14,7 +14,7 @@ class DefaultCodeHandler {
 
             res.status(200).json({
                 status: "success",
-                data: { default_code: defaultCodes.map(defaultCode => defaultCodeMapper(defaultCode)) }
+                data: { default_codes: defaultCodes.map(defaultCode => defaultCodeMapper(defaultCode)) }
             })
         } catch(error){
             next(error)

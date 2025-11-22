@@ -4,7 +4,9 @@ const userMapper = user => {
         username: user.username,
         fullname: user.fullname,
         email: user.email,
-        bio: user.bio
+        bio: user.bio,
+        github: user.github,
+        linkedin: user.linkedin
     }
 }
 
@@ -38,10 +40,16 @@ const programmingLanguageMapper = programmingLanguage => {
 }
 
 const submissionMapper = submission => {
+    const submissionStatusMapper = {
+        Accepted: "Accepted",
+        Wrong_Answer: "Wrong Answer",
+        Runtime_Error: "Runtime Error"
+    }
+
     return {
         id: submission.id,
         code: submission.code,
-        status: submission.status,
+        status: submissionStatusMapper[submission.status],
         problem: {
             id: submission.problem.id,
             title: submission.problem.title,
@@ -52,7 +60,9 @@ const submissionMapper = submission => {
             id: submission.programmingLanguage.id,
             name: submission.programmingLanguage.name,
             version: submission.programmingLanguage.version
-        }
+        },
+        created_at: submission.created_at,
+        updated_at: submission.updated_at
     }
 }
 
@@ -63,9 +73,9 @@ const problemSuggestionMapper = problemSuggestion => {
         description: problemSuggestion.description,
         difficulty: problemSuggestion.difficulty,
         suggester: {
-            id: discussion.creator.id,
-            username: discussion.creator.username,
-            fullname: discussion.creator.fullname
+            id: problemSuggestion.suggester.id,
+            username: problemSuggestion.suggester.username,
+            fullname: problemSuggestion.suggester.fullname
         }
     }
 }

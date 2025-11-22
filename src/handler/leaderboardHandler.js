@@ -1,6 +1,9 @@
+const getPoints = require("../helper/getPoints")
+
 class LeaderboardHandler {
-    constructor(userService){
+    constructor(userService, problemService){
         this._userService = userService
+        this._problemService = problemService
 
         this.getLeaderboard = this.getLeaderboard.bind(this)
     }
@@ -9,54 +12,15 @@ class LeaderboardHandler {
         try {
             const users = await this._userService.getUsers()
             const leaderboard = []
+            const problems = await this._problemService.getProblems()
 
             users.forEach(user => {
-                const pointsPerSubmission = {
-                    Mudah: 1,
-                    Sedang: 2,
-                    Sulit: 3
-                }
-                const pointsPerProblemSuggestion = {
-                    Mudah: 4,
-                    Sedang: 5,
-                    Sulit: 6
-                }
-
-                const acceptedSubmissions = {
-                    Mudah: 0,
-                    Sedang: 0,
-                    Sulit: 0
-                }
-                user.submissions.forEach(submission => {
-                    if (submission.status){
-                        acceptedSubmissions[submission.problem.difficulty]++
-                    }
-                })
-
-                const acceptedProblemSuggestions = {
-                    Mudah: 0,
-                    Sedang: 0,
-                    Sulit: 0
-                }
-                user.problemSuggestions.forEach(problemSuggestion => {
-                    if (problemSuggestion.status){
-                        acceptedProblemSuggestions[problemSuggestion.difficulty]++
-                    }
-                })
-
-                let totalPoints = 0
-                for (const difficulty in pointsPerSubmission){
-                    totalPoints += pointsPerSubmission[difficulty] * acceptedSubmissions[difficulty]
-                    totalPoints += pointsPerProblemSuggestion[difficulty] * acceptedProblemSuggestions[difficulty]
-                }
-
+                const points = getPoints(user.submissions, problems, user.problemSuggestions)
                 const userInLeaderboard = {
                     id: user.id,
                     username: user.username,
                     fullname: user.fullname,
-                    accepted_submissions: acceptedSubmissions,
-                    accpeted_problem_suggestions: acceptedProblemSuggestions,
-                    total_points: totalPoints
+                    ...points
                 }
 
                 leaderboard.push(userInLeaderboard)

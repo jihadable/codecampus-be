@@ -4,12 +4,8 @@ class SubmissionService {
     }
 
     async addSubmission({ user_id, problem_id, programming_language_id, code, status }){
-        const submission = await this._db.submission.upsert({
-            where: {
-                user_id, problem_id, programming_language_id, status
-            },
-            update: { code },
-            create: {
+        const submission = await this._db.submission.create({
+            data: {
                 user_id, problem_id, programming_language_id, code, status
             },
             include: {
@@ -27,7 +23,11 @@ class SubmissionService {
             include: {
                 problem: true,
                 programmingLanguage: true
-            }
+            },
+            orderBy: {
+                updated_at: "desc"
+            },
+            take: 5
         })
 
         return submissions

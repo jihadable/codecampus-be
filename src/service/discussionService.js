@@ -39,7 +39,13 @@ class DiscussionService {
     async getDiscussions(){
         const discussions = await this._db.discussion.findMany({
             include: {
-                creator: true
+                creator: true,
+                _count: {
+                    select: { comments: true }
+                }
+            },
+            orderBy: {
+                created_at: "desc"
             }
         })
 

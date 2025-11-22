@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://codecampus-be.vercel.app/api"
+            "url": "https://academiacode-be.vercel.app/api"
         }
     ],
     "tags": [
@@ -30,6 +30,10 @@
         {
             "name": "Submissions",
             "description": "Jawaban soal pemrograman"
+        },
+        {
+            "name": "Problem suggestion",
+            "description": "Memberi saran soal pemrograman baru"
         },
         {
             "name": "Discussions",
@@ -89,6 +93,14 @@
                                                         "bio": {
                                                             "type": "string",
                                                             "example": "Programmer"
+                                                        },
+                                                        "github": {
+                                                            "type": "string",
+                                                            "example": "https://github.com/budisetiawan/"
+                                                        },
+                                                        "linkedin": {
+                                                            "type": "string",
+                                                            "example": "https://www.linkedin.com/in/budi-setiawan/"
                                                         }
                                                     }
                                                 }
@@ -124,6 +136,14 @@
                                     "bio": {
                                         "type": "string",
                                         "example": "Programmer"
+                                    },
+                                    "github": {
+                                        "type": "string",
+                                        "example": "https://github.com/budisetiawan/"
+                                    },
+                                    "linkedin": {
+                                        "type": "string",
+                                        "example": "https://www.linkedin.com/in/budi-setiawan/"
                                     }
                                 }
                             }
@@ -167,6 +187,14 @@
                                                         "bio": {
                                                             "type": "string",
                                                             "example": "Programmer"
+                                                        },
+                                                        "github": {
+                                                            "type": "string",
+                                                            "example": "https://github.com/budisetiawan/"
+                                                        },
+                                                        "linkedin": {
+                                                            "type": "string",
+                                                            "example": "https://www.linkedin.com/in/budi-setiawan/"
                                                         }
                                                     }
                                                 }
@@ -247,7 +275,15 @@
                                                         },
                                                         "bio": {
                                                             "type": "string",
-                                                            "example": ""
+                                                            "example": null
+                                                        },
+                                                        "github": {
+                                                            "type": "string",
+                                                            "example": null
+                                                        },
+                                                        "linkedin": {
+                                                            "type": "string",
+                                                            "example": null
                                                         }
                                                     }
                                                 },
@@ -325,6 +361,14 @@
                                                         "bio": {
                                                             "type": "string",
                                                             "example": "Programmer"
+                                                        },
+                                                        "github": {
+                                                            "type": "string",
+                                                            "example": "https://github.com/budisetiawan/"
+                                                        },
+                                                        "linkedin": {
+                                                            "type": "string",
+                                                            "example": "https://www.linkedin.com/in/budi-setiawan/"
                                                         }
                                                     }
                                                 },
@@ -637,6 +681,44 @@
                                                         "status": {
                                                             "type": "boolean",
                                                             "example": true
+                                                        },
+                                                        "problem": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "title": {
+                                                                    "type": "string",
+                                                                    "example": "Faktorial"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string",
+                                                                    "example": "Buatlah function yang bisa menghasilkan nilai faktorial dari sebuah bilangan"
+                                                                },
+                                                                "difficulty": {
+                                                                    "type": "string",
+                                                                    "example": "Mudah"
+                                                                }
+                                                            }
+                                                        },
+                                                        "programming_language": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "javascript"
+                                                                },
+                                                                "version": {
+                                                                    "type": "string",
+                                                                    "example": "18.15.0"
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -688,6 +770,137 @@
                                                             "status": {
                                                                 "type": "boolean",
                                                                 "example": true
+                                                            },
+                                                            "problem": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                    },
+                                                                    "title": {
+                                                                        "type": "string",
+                                                                        "example": "Faktorial"
+                                                                    },
+                                                                    "description": {
+                                                                        "type": "string",
+                                                                        "example": "Buatlah function yang bisa menghasilkan nilai faktorial dari sebuah bilangan"
+                                                                    },
+                                                                    "difficulty": {
+                                                                        "type": "string",
+                                                                        "example": "Mudah"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "programming_language": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string",
+                                                                        "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                    },
+                                                                    "name": {
+                                                                        "type": "string",
+                                                                        "example": "javascript"
+                                                                    },
+                                                                    "version": {
+                                                                        "type": "string",
+                                                                        "example": "18.15.0"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/problem_suggestions": {
+            "post": {
+                "tags": ["Problem suggestion"],
+                "summary": "Memberikan saran soal pemrograman baru",
+                "security": [
+                    { "bearerAuth": [] }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Fibonacci"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Buatlah function yang bisa menghasilkan nilai fibonacci dari sebuah bilangan"
+                                    },
+                                    "difficulty": {
+                                        "type": "string",
+                                        "example": "Sedang"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Saran soal pemrograman baru berhasil diberikan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "problem_suggestion": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "example": ""
+                                                        },
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Fibonacci"
+                                                        },
+                                                        "description": {
+                                                            "type": "string",
+                                                            "example": "Buatlah function yang bisa menghasilkan nilai fibonacci dari sebuah bilangan"
+                                                        },
+                                                        "difficulty": {
+                                                            "type": "string",
+                                                            "example": "Sedang"
+                                                        },
+                                                        "suggester": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "b77130ff-bb04-4695-a9a6-03a98de4ba79"
+                                                                },
+                                                                "username": {
+                                                                    "type": "string",
+                                                                    "example": "budisetiawan"
+                                                                },
+                                                                "fullname": {
+                                                                    "type": "string",
+                                                                    "example": "Budi Setiawan"
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -1171,9 +1384,17 @@
                                                                 "type": "string",
                                                                 "example": "Budi Setiawan"
                                                             },
-                                                            "accepted_submissions": {
+                                                            "submissions": {
                                                                 "type": "object",
                                                                 "properties": {
+                                                                    "accepeted_submissions": {
+                                                                        "type": "integer",
+                                                                        "example": 5
+                                                                    },
+                                                                    "total_problems": {
+                                                                        "type": "integer",
+                                                                        "example": 7
+                                                                    },
                                                                     "Mudah": {
                                                                         "type": "integer",
                                                                         "example": 3
@@ -1204,6 +1425,10 @@
                                                                         "example": 0
                                                                     }
                                                                 }
+                                                            },
+                                                            "total_points": {
+                                                                "type": "integer",
+                                                                "example": 9
                                                             }
                                                         }
                                                     }

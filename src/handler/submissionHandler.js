@@ -29,7 +29,6 @@ class SubmissionHandler {
             const problem = await this._problemService.getProblemById(problem_id)
             const programmingLanguage = await this._programmingLanguageService.getProgrammingLanguageById(programming_language_id)
             const testCases = await this._testCaseService.getTestCasesByProblem(problem_id)
-            // console.log(testCases)
 
             const { name, version, file_name, wrapper_code_template } = programmingLanguage
             const { function_name } = problem

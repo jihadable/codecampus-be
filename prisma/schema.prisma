@@ -49,6 +49,7 @@ model Problem {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
+  wrapperCodes WrapperCode[]
   defaultCodes DefaultCode[]
   testCases TestCase[]
   submissions Submission[]
@@ -59,12 +60,14 @@ model Problem {
 model TestCase {
   id String @id @default(uuid())
   problem_id String
+  programming_language_id String
   input String
   expected_output String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
   problem Problem @relation(fields: [problem_id], references: [id], onDelete: Cascade)
+  programmingLanguage ProgrammingLanguage @relation(fields: [programming_language_id], references: [id], onDelete: Cascade)
 
   @@map("test_cases")
 }
@@ -88,12 +91,25 @@ model ProgrammingLanguage {
   name String
   version String
   file_name String
-  wrapper_code_template String
 
+  wrapperCodes WrapperCode[]
   defaultCodes DefaultCode[]
   submissions Submission[]
+  testCases TestCase[]
 
   @@map("programming_languages")
+}
+
+model WrapperCode {
+  id String @id @default(uuid())
+  code String
+  problem_id String
+  programming_language_id String
+
+  problem Problem @relation(fields: [problem_id], references: [id], onDelete: Cascade)
+  programmingLanguage ProgrammingLanguage @relation(fields: [programming_language_id], references: [id], onDelete: Cascade)
+
+  @@map("wrapper_codes")
 }
 
 enum SubmissionStatus {

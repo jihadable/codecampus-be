@@ -8,7 +8,8 @@ class SubmissionHandler {
         pistonAPIService,
         problemService,
         programmingLanguageService,
-        testCaseService
+        testCaseService,
+        wrapperCodeService
     ){
         this._service = service
 
@@ -16,6 +17,7 @@ class SubmissionHandler {
         this._problemService = problemService
         this._programmingLanguageService = programmingLanguageService
         this._testCaseService = testCaseService
+        this._wrapperCodeService = wrapperCodeService
 
         this.postSubmission = this.postSubmission.bind(this)
         this.getSubmissionsByUser = this.getSubmissionsByUser.bind(this)
@@ -28,10 +30,12 @@ class SubmissionHandler {
 
             const problem = await this._problemService.getProblemById(problem_id)
             const programmingLanguage = await this._programmingLanguageService.getProgrammingLanguageById(programming_language_id)
-            const testCases = await this._testCaseService.getTestCasesByProblem(problem_id)
+            const testCases = await this._testCaseService.getTestCasesByProblemAndProgrammingLanguage(problem_id, programming_language_id)
+            const wrapperCode = await this._wrapperCodeService.getWrapperCodeByProblemAndProgrammingLanguage(problem_id, programming_language_id)
 
-            const { name, version, file_name, wrapper_code_template } = programmingLanguage
+            const { name, version, file_name } = programmingLanguage
             const { function_name } = problem
+            const { code: wrapper_code_template } = wrapperCode
             
             let fullCode = code
             for (const { input } of testCases){
@@ -44,6 +48,7 @@ class SubmissionHandler {
                 file_name,
                 code: fullCode
             })
+            // console.log(result)
 
             // runtime error
             if (result.run.stderr.length){
@@ -56,6 +61,23 @@ class SubmissionHandler {
                             ...submissionMapper(submission),
                             runtime_error: {
                                 stderr: result.run.stderr
+                            }
+                        }
+                    }
+                })
+            }
+
+            // runtime error
+            if (result.run.code){
+                const submission = await this._service.addSubmission({ user_id, problem_id, programming_language_id, code, status: SubmissionStatus.Runtime_Error })
+
+                res.status(200).json({
+                    status: "success",
+                    data: {
+                        submission: {
+                            ...submissionMapper(submission),
+                            runtime_error: {
+                                stderr: result.run.stdout
                             }
                         }
                     }
@@ -100,7 +122,7 @@ class SubmissionHandler {
             // wrong answer
             else {
                 const submission = await this._service.addSubmission({ user_id, problem_id, programming_language_id, code, status: SubmissionStatus.Wrong_Answer })
-                const { input, expected_output } = testCases[wrongTestCaseIndex]
+                const { input_as_json, expected_output } = testCases[wrongTestCaseIndex]
                 const actual_output = actualOutputs[wrongTestCaseIndex]
 
                 res.status(200).json({
@@ -111,7 +133,7 @@ class SubmissionHandler {
                             wrong_answer: {
                                 passed_test_cases: passedTestCases,
                                 total_test_cases: totalTestCases,
-                                input,
+                                input: input_as_json,
                                 expected_output,
                                 actual_output
                             }

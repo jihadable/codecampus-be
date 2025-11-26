@@ -6,6 +6,7 @@ const ProgrammingLanguageService = require("../service/programmingLanguageServic
 const TestCaseService = require("../service/testCaseService")
 const SubmissionHandler = require("../handler/submissionHandler")
 const authMiddleware = require("../middleware/authMiddleware")
+const WrapperCodeService = require("../service/wrapperCodeService")
 
 const submissionRouter = db => {
     const router = Router()
@@ -14,12 +15,14 @@ const submissionRouter = db => {
     const problemService = new ProblemService(db)
     const programmingLanguageService = new ProgrammingLanguageService(db)
     const testCaseService = new TestCaseService(db)
+    const wrapperCodeService = new WrapperCodeService(db)
     const handler = new SubmissionHandler(
         service,
         pistonAPIService,
         problemService,
         programmingLanguageService,
-        testCaseService
+        testCaseService,
+        wrapperCodeService
     )
 
     router.post("/", authMiddleware, handler.postSubmission)
